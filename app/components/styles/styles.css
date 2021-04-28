@@ -101,6 +101,8 @@ select{
     -moz-appearance: none;
     appearance: none;
     background: url("./icons/huella.ico") 96% / 15% no-repeat #ebebeb;
+    border: none;
+	border-radius: 10px;
 }
 .global:hover {
     border-bottom: 5px solid rgb(102, 0, 102);
@@ -113,6 +115,8 @@ select{
     overflow: hidden;
     height: 6rem;
     width: 150px ;
+    border: none;
+	border-radius: 10px;
 }
 .description-text:hover {
     border-bottom: 5px solid rgb(102, 0, 102);
