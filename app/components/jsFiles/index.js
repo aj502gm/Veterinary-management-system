@@ -4,6 +4,9 @@ console.log("Working");
 import Dashboard from "./sections/home.js";
 import Pets from "./sections/pets.js";
 import Dates from "./sections/dates.js";
+import newDate from "./sections/newDate.js";
+
+import user from "./sections/user.js";
 const paths = async () =>{
     const possiblePaths = [
         {
@@ -19,8 +22,11 @@ const paths = async () =>{
             src: "/dates", frontEnd: Dates
         },
         {
-            src: "/user", frontEnd: () => console.log("User")
+            src: "/users", frontEnd: user
         },
+        {
+            src: "/plus", frontEnd: newDate
+        }
     ];
 
     const listOfPaths = possiblePaths.map(path =>{
