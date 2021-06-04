@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 
 app.post('/postDate', (req, res)=>{
     console.log(req.body.ownerName);
+    res.json(req.body);
 });
 
 app.use("/components", exp.static(path.resolve(__dirname, "app", "components")));

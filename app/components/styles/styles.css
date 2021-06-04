@@ -62,8 +62,45 @@ body{
     right: 0;
     background: #d1f3e7;
     height: 100%;
+    overflow: scroll;
 }
 /*DYNAMIC CONTENT ZONE */
+
+/*HOME MENU*/
+.main-dashboard{
+
+   display: grid;
+   grid-template-rows: 150px  150px  150px  150px;
+   grid-template-columns:1250px;
+   grid-gap: 8px;
+   grid-auto-flow: row;
+   width: 350px;
+   background: green;
+   overflow: scroll;
+}
+
+.main-dashboard > div {
+    background-color: white;
+    color: black;
+    font-size: 4vw;
+    padding: 4px;
+    margin: 1%;
+    width: 25%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+.main-dashboard-graphs{
+    display: grid;
+    background: yellow;
+    position: absolute;
+    right: 0px;
+    top: 8%;
+    width: 915px;
+    height: 100%;
+
+}
+/*HOME MENU*/
 .main-banner{
     background:rgb(102, 0, 102) ;
     color: white;
