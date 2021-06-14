@@ -70,13 +70,14 @@ body{
 .main-dashboard{
 
    display: grid;
-   grid-template-rows: 150px  150px  150px  150px;
-   grid-template-columns:1250px;
+   grid-template-rows: 150px;
+   grid-template-columns:300px 300px 300px 300px;
    grid-gap: 8px;
-   grid-auto-flow: row;
-   width: 350px;
-   background: green;
-   overflow: scroll;
+   grid-auto-flow: column;
+   padding: 1.5%;
+   height: 30%;
+   
+  
 }
 
 .main-dashboard > div {
@@ -85,21 +86,27 @@ body{
     font-size: 4vw;
     padding: 4px;
     margin: 1%;
-    width: 25%;
+   
     height: 100%;
     text-align: center;
     vertical-align: middle;
 }
 .main-dashboard-graphs{
-    display: grid;
-    background: yellow;
+    
     position: absolute;
-    right: 0px;
-    top: 8%;
-    width: 915px;
-    height: 100%;
-
+    right: 0;
+    bottom:0;
+    
+    overflow:auto;
 }
+canvas{
+
+    
+    width: 600px !important;
+    height:350px!important;
+    
+  
+  }
 /*HOME MENU*/
 .main-banner{
     background:rgb(102, 0, 102) ;
