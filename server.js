@@ -10,16 +10,26 @@ var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "admin",
-    database: "control_clientes",
+    database: "petworld",
     connectionLimit: 5
 });
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-app.post('/postDate', (req, res)=>{
-    console.log(req.body.ownerName);
-    res.json(req.body);
+app.get('/renderMainDashboard', (req,res)=>{ //DASHBOARD DATA
+    con.connect(err => {
+        if (!err){
+            con.query("SELECT * FROM owners", (err, data, fields) =>{
+                console.log(data);
+            })
+        }
+    });
+})
+
+app.post('/postDate', (req, res)=>{ //CREATING A NEW DATE
+    //console.log(req.body.ownerName);
+    //res.json(req.body);
 });
 
 app.use("/components", exp.static(path.resolve(__dirname, "app", "components")));
@@ -28,7 +38,7 @@ app.get("/*",(request, resolve) =>{ //MAIN DASHBOARD
     resolve.sendFile(path.resolve(__dirname, "app", "index.html"));
 });
 
-app.listen(process.env.PORT || 5600, function(){
-    console.log("Server is now working");
+app.listen(process.env.PORT || 5600, function(){ //SERVER'S DEPLOYMENT
+    console.log("Server is now working"); 
 });
 
