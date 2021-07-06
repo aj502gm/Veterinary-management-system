@@ -1,21 +1,27 @@
-
+let tableData = "";
 export default class{
+   
     constructor() {
         this.title = "Dashboard";
         
-       let data =  $.ajax({
-            type:'GET',
-            url: 'http://localhost:5600/renderMainDashboard',
-            success: function(res){
-               console.log("FKDSJFKDSJFKSDJFKSDJFKSDJ");
-            },
-            error: function(xhr, status, err) {
-                console.log(xhr.responseText);
-            }
-        })
-        
     }
     async getHTML(){
+       
+        fetch('http://localhost:5600/renderMainDashboard') //DEFAULT GET 
+        .then(response => response.json())
+        .then(finalResponse => {
+            tableData = finalResponse.map((data,index)=>
+            `
+            <tr>
+                <td class="column1">${data.id}</td>
+                <td class="column2">${data.firstName} ${data.lastName}</td>
+                <td class="column3">${data.phoneNumber}</td>
+                <td class="column4">Null</td>
+            </tr>
+            `).join("");
+            console.log(tableData);
+        });
+        console.log(tableData);
         return `
         <script src = "./components/jsFiles/graphs.js" type = "module"></script>
         <h1 class = "main-banner">Home</h1>
@@ -58,12 +64,7 @@ export default class{
                                 </tr>
                             </thead>
                             <tbody>
-                                    <tr>
-                                        <td class="column1">Null</td>
-                                        <td class="column2">Null</td>
-                                        <td class="column3">Null</td>
-                                        <td class="column4">Null</td>
-                                    </tr>
+                                  ${tableData}
                             </tbody>
                         </table>
                     </div>

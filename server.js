@@ -21,11 +21,11 @@ app.get('/renderMainDashboard', (req,res)=>{ //DASHBOARD DATA
     con.connect(err => {
         if (!err){
             con.query("SELECT * FROM owners", (err, data, fields) =>{
-                console.log(data);
+                res.status(200).json(data);
             })
         }
     });
-})
+});
 
 app.post('/postDate', (req, res)=>{ //CREATING A NEW DATE
     //console.log(req.body.ownerName);
