@@ -1,29 +1,29 @@
-let tableData = "";
+let ownersBanner = document.getElementById('ownersBanner');
 export default class{
    
     constructor() {
         this.title = "Dashboard";
         
     }
-    async getHTML(){
-       
-        fetch('http://localhost:5600/renderMainDashboard') //DEFAULT GET 
-        .then(response => response.json())
-        .then(finalResponse => {
-            tableData = finalResponse.map((data,index)=>
+    async getData(){    
+        const request = await fetch('http://localhost:5600/renderMainDashboard');
+        const data = await request.json(); //DEFAULT GET 
+        const tableDataTemp = data.map((data,index)=>
             `
             <tr>
                 <td class="column1">${data.id}</td>
                 <td class="column2">${data.firstName} ${data.lastName}</td>
                 <td class="column3">${data.phoneNumber}</td>
-                <td class="column4">Null</td>
+                <td class="column4">BRUHHH</td>
             </tr>
-            `).join("");
-            console.log(tableData);
-        });
+            `);
+        return tableDataTemp;
+    }
+    async getHTML(){
+        let tableData = await this.getData();
         console.log(tableData);
         return `
-        <script src = "./components/jsFiles/graphs.js" type = "module"></script>
+       
         <h1 class = "main-banner">Home</h1>
         <div class = "main-dashboard">
            <div>
@@ -31,7 +31,7 @@ export default class{
                 <p>Pets<p>
            </div>
            <div>
-                <p>X<p>
+                <p id= 'ownersBanner'>X<p>
                 <p>Owners<p>
            </div>
            <div>
@@ -64,7 +64,7 @@ export default class{
                                 </tr>
                             </thead>
                             <tbody>
-                                  ${tableData}
+                                ${tableData}
                             </tbody>
                         </table>
                     </div>

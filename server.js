@@ -4,6 +4,13 @@ var bodyParser  = require('body-parser');
 const app = exp();
 
 /*DATABASE AND QUERIES*/ 
+
+/*ERROR LOG
+
+Error: connect ECONNREFUSED 127.0.0.1:3306
+    Windows + R (admin role) + start MYSQL
+
+*/
 const mysql = require("mysql2"); 
 
 var con = mysql.createConnection({
@@ -18,12 +25,13 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 app.get('/renderMainDashboard', (req,res)=>{ //DASHBOARD DATA
-    con.connect(err => {
-        if (!err){
-            con.query("SELECT * FROM owners", (err, data, fields) =>{
-                res.status(200).json(data);
-            })
-        }
+    con.connect(function(err) {
+        if (err) throw err;
+        con.query("SELECT * FROM owners", function (err, result, fields) {
+          if (err) throw err;
+          //console.log(result);
+          res.send(result);
+        });
     });
 });
 
