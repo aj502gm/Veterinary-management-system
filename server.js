@@ -29,7 +29,26 @@ app.get('/renderMainDashboard', (req,res)=>{ //DASHBOARD DATA
         if (err) throw err;
         con.query("SELECT * FROM owners", function (err, result, fields) {
           if (err) throw err;
-          //console.log(result);
+          res.send(result);
+        });
+    });
+});
+app.get('/renderSecondaryItems', (req,res)=>{ //Secondary DASHBOARD DATA
+    con.connect(function(err) {
+        if (err) throw err;
+        con.query("SELECT COUNT(*) FROM owners", function (err, result, fields) {
+          if (err) throw err;
+          res.send(result);
+        });
+    });
+});
+
+/*EN PROCESO TODAVIA*/
+app.get('/countOwners', (req,res)=>{ //DASHBOARD DATA
+    con.connect(function(err) {
+        if (err) throw err;
+        con.query("SELECT COUNT(id) FROM owners", function (err, result, fields) {
+          if (err) throw err;
           res.send(result);
         });
     });
@@ -43,7 +62,7 @@ app.post('/postDate', (req, res)=>{ //CREATING A NEW DATE
 app.use("/components", exp.static(path.resolve(__dirname, "app", "components")));
 
 app.get("/*",(request, resolve) =>{ //MAIN DASHBOARD
-    resolve.sendFile(path.resolve(__dirname, "app", "index.html"));
+    resolve.sendFile(path.resolve(__dirname, "app", "index.html")); //PEQUEÑO BUG
 });
 
 app.listen(process.env.PORT || 5600, function(){ //SERVER'S DEPLOYMENT

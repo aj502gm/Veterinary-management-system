@@ -1,10 +1,19 @@
-let ownersBanner = document.getElementById('ownersBanner');
+let ownersBanner = await document.getElementById('ownersBanner');
 export default class{
    
     constructor() {
         this.title = "Dashboard";
         
     }
+    // async getOwnersBanner(){
+    //     const request = await fetch('http://localhost:5600/countOwners');
+    //     const data = await request.json(); //DEFAULT GET 
+    //     data.map((dt, index) =>{
+    //         ownersBanner.innerText = dt;
+    //     })
+    // }
+
+    
     async getData(){    
         const request = await fetch('http://localhost:5600/renderMainDashboard');
         const data = await request.json(); //DEFAULT GET 
@@ -14,14 +23,29 @@ export default class{
                 <td class="column1">${data.id}</td>
                 <td class="column2">${data.firstName} ${data.lastName}</td>
                 <td class="column3">${data.phoneNumber}</td>
-                <td class="column4">BRUHHH</td>
+                <td class="column4">
+                   
+                    <input type = "button" value = "Delete" id = ${data.id} class = "btn btn-table" ></input>
+                </td>
             </tr>
             `);
         return tableDataTemp;
     }
+    async getOwnersCount(){
+        console.log("dentro");
+        const request = await fetch('http://localhost:5600/renderSecondaryItems');
+        const data = await request;
+        // data.forEach(element => {
+        //     console.log(element);
+        // });
+       // console.log(data);
+        return data;
+    }
     async getHTML(){
         let tableData = await this.getData();
         console.log(tableData);
+        // let secondaryData = await this.getOwnersCount();
+        // console.log(secondaryData);
         return `
        
         <h1 class = "main-banner">Home</h1>
